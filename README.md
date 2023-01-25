@@ -2,32 +2,44 @@
 
 This is the repository for course material (input and output) for the "Mathematics of deep learning with an emphasis on inverse problems" course at Göttingen 2018.
 
-## Installing Dependencies
+## Setting up the environment
 
-The latest version of ODL and some supporting libraries are needed in order to use these notebooks. See the [installation instructions](code/part0_install.ipynb) for further information.
+Install anaconda by following official installation instructions at
+https://www.anaconda.com/products/individual
 
-## Jupyter Notebooks
+It should look similar to the following commands, but with different software versions  
 
-Part of the material will be published as [Jupyter notebooks](http://jupyter.org/). If you're familiar with Mathematica notebooks, you won't be surprised.
+   $ wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh \
+   $ chmod  +x Anaconda3-5.2.0-Linux-x86_64.sh \
+   $ ./Anaconda3-5.2.0-Linux-x86_64.sh 
 
-To install the notebook software, you can either use `conda`:
+Create a new environment named "myenv" by 
 
-    conda install notebook
+   $ conda create -n myenv python=3.10
 
-or `pip`:
+Activate this environment
 
-    pip install notebook
+   $ conda activate myenv
 
-You can then start the software by running
+Install pytorch 
 
-    jupyter notebook
+   $ conda install -c pytorch pytorch torchvision
 
-in a terminal. Sometimes one gets `OSError: [Errno 99] Cannot assign requested address`. In this case an explicit IP has to be given, which should be the equivalent to `localhost` in your case:
+Install back-ends for odl
 
-    jupyter notebook --ip=127.0.0.1
+   $ conda install -c astra-toolbox/label/dev astra-toolbox \
+   $ conda install -c anaconda scikit-image
 
-The notebooks can also be viewed online as static HTML pages. This works (somewhat) on GitHub directly, but better with [nbviewer](https://nbviewer.jupyter.org/). Just copy the URL of the notebook into the text field at that page.
+Install odl from source 
 
-## Feedback
+   $ git clone https://github.com/odlgroup/odl \
+   $ cd odl \
+   $ pip install --editable . 
 
-If you find any errors or experience issues, please get back to us ([@ozanoktem](https://github.com/ozanoktem) or [@adler-j](https://github.com/adler-j)) or [create an issue](https://github.com/adler-j/odlworkshop/issues/new).
+Install other packages 
+
+   $ conda install matplotlib jupyter ipykernel
+
+Install jupyter and make your environment visible in the jupyter notebook
+
+   $ python -m ipykernel install --user --name myenv --display-name="My Env"
